@@ -6,8 +6,8 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
 const images = [
-  { src: "https://mott.pe/noticias/wp-content/uploads/2017/06/Impactantes-paisajes-muestra-la-naturaleza-jam%C3%A1s-vista-Fotograf%C3%ADas-por-Bent-Velling-1-compressor.png", alt: "Couple 1" },
-  { src: "/placeholder.svg", alt: "Couple 2" },
+  { src: "/video_prueba.mp4", alt: "Imagen 1" },
+  { src: "/imagen_prueba", alt: "Imagen 2" },
   { src: "/placeholder.svg", alt: "Couple 3" },
   { src: "/placeholder.svg", alt: "Couple 4" },
   { src: "/placeholder.svg", alt: "Couple 5" },
