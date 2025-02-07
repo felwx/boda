@@ -24,7 +24,7 @@ const images = [
     alt: "Ciudad de las Artes y las Ciencias en Valencia",
   },
   {
-    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/slider5.jpg-zHnKMH2WKFbIVLYdJZEtzsUzM3l8j3.jpeg",
+    src: "/placeholder.svg",
     alt: "Ciudad de las Artes y las Ciencias en Valencia",
   },
 ]
@@ -76,7 +76,7 @@ export default function Home() {
           {images.map((image, index) => (
             <div key={index} className="relative aspect-[3/2]">
               <Image
-                src={image.src || "/placeholder.svg"}
+                src={image.src}
                 alt={image.alt}
                 fill
                 className="object-cover rounded-lg shadow-lg"
