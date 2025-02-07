@@ -1,7 +1,7 @@
 "use client"
 
-import { useState } from "react"
-import CreatableSelect from "react-select/creatable"
+import { useState, type React } from "react"
+import { Combobox } from "@headlessui/react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -9,6 +9,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Textarea } from "@/components/ui/textarea"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { CheckCircle2, XCircle } from "lucide-react"
+import { CheckIcon } from "lucide-react"
 
 const guestNames = [
   { value: "Adrián Gemelo Poleñino", label: "Adrián Gemelo Poleñino" },
@@ -244,14 +245,43 @@ export default function RSVP() {
             <Label htmlFor="name" className="text-base sm:text-lg">
               Nombre
             </Label>
-            <CreatableSelect
-              id="name"
-              name="name"
-              required
-              options={guestNames}
-              value={selectedName}
-              onChange={(newValue) => setSelectedName(newValue)}
-            />
+            <Combobox value={selectedName} onChange={setSelectedName}>
+              <Combobox.Input
+                className="w-full border border-input bg-background text-foreground rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+                displayValue={(guest: { label: string }) => guest?.label}
+                onChange={(event) => setSelectedName({ value: event.target.value, label: event.target.value })}
+              />
+              <Combobox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                {guestNames.map((guest) => (
+                  <Combobox.Option
+                    key={guest.value}
+                    value={guest}
+                    className={({ active }) =>
+                      `relative cursor-default select-none py-2 pl-10 pr-4 ${
+                        active ? "bg-primary text-white" : "text-gray-900"
+                      }`
+                    }
+                  >
+                    {({ selected, active }) => (
+                      <>
+                        <span className={`block truncate ${selected ? "font-medium" : "font-normal"}`}>
+                          {guest.label}
+                        </span>
+                        {selected && (
+                          <span
+                            className={`absolute inset-y-0 left-0 flex items-center pl-3 ${
+                              active ? "text-white" : "text-primary"
+                            }`}
+                          >
+                            <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                          </span>
+                        )}
+                      </>
+                    )}
+                  </Combobox.Option>
+                ))}
+              </Combobox.Options>
+            </Combobox>
           </div>
           <div>
             <Label htmlFor="email" className="text-base sm:text-lg">

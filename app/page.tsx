@@ -4,20 +4,36 @@ import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import { ChevronLeft, ChevronRight } from "lucide-react"
+import VideoPlayer from "./components/VideoPlayer"
 
 const images = [
-  { src: "/placeholder.svg", alt: "Couple Image 1" },
-  { src: "/placeholder.svg", alt: "Couple Image 2" },
-  { src: "/placeholder.svg", alt: "Couple Image 3" },
-  { src: "/placeholder.svg", alt: "Couple Image 4" },
-  { src: "/placeholder.svg", alt: "Couple Image 5" },
+  {
+    src: "/slider1.jpg",
+    alt: "Ciudad de las Artes y las Ciencias en Valencia",
+  },
+  {
+    src: "/slider2.jpg",
+    alt: "Ciudad de las Artes y las Ciencias en Valencia",
+  },
+  {
+    src: "/slider3.jpg",
+    alt: "Ciudad de las Artes y las Ciencias en Valencia",
+  },
+  {
+    src: "/slider4.jpg",
+    alt: "Ciudad de las Artes y las Ciencias en Valencia",
+  },
+  {
+    src: "/placeholder.svg",
+    alt: "Ciudad de las Artes y las Ciencias en Valencia",
+  },
 ]
 
 function SampleNextArrow(props: any) {
   const { className, style, onClick } = props
   return (
     <div
-      className={`${className} before:content-[''] z-10 absolute right-4 top-1/2 -translate-y-1/2`}
+      className={`${className} before:content-[''] z-20 absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer`}
       style={{ ...style, display: "block" }}
       onClick={onClick}
     >
@@ -30,7 +46,7 @@ function SamplePrevArrow(props: any) {
   const { className, style, onClick } = props
   return (
     <div
-      className={`${className} before:content-[''] z-10 absolute left-4 top-1/2 -translate-y-1/2`}
+      className={`${className} before:content-[''] z-20 absolute left-4 top-1/2 -translate-y-1/2 cursor-pointer`}
       style={{ ...style, display: "block" }}
       onClick={onClick}
     >
@@ -55,11 +71,12 @@ export default function Home() {
   return (
     <div className="text-center content-wrapper">
       <div className="max-w-2xl mx-auto mb-6 md:mb-8">
-        <h1 className="elegant-heading text-3xl sm:text-4xl md:text-5xl mb-6 md:mb-8">Bienvenido a nuestra boda</h1><Slider {...settings}>
+        <h1 className="elegant-heading text-3xl sm:text-4xl md:text-5xl mb-6 md:mb-8">Bienvenido a nuestra boda</h1>
+        <Slider {...settings} className="relative">
           {images.map((image, index) => (
             <div key={index} className="relative aspect-[3/2]">
               <Image
-                src={image.src || "/placeholder.svg"}
+                src={image.src}
                 alt={image.alt}
                 fill
                 className="object-cover rounded-lg shadow-lg"
@@ -79,6 +96,7 @@ export default function Home() {
           priority
         />
       </div>
+      <VideoPlayer src="/pedida.mp4" title="Nuestra Historia de Amor" />
     </div>
   )
 }

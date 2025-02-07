@@ -1,11 +1,13 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import { Heart, Menu, X } from "lucide-react"
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isVisible, setIsVisible] = useState(true)
+  const [lastScrollY, setLastScrollY] = useState(0)
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -17,9 +19,26 @@ export function Header() {
     document.body.style.overflow = "auto"
   }
 
+  useEffect(() => {
+    const controlNavbar = () => {
+      const currentScrollY = window.scrollY
+      if (currentScrollY > lastScrollY) {
+        setIsVisible(false) // Scrolling down
+      } else {
+        setIsVisible(true) // Scrolling up
+      }
+      setLastScrollY(currentScrollY)
+    }
+
+    window.addEventListener("scroll", controlNavbar)
+    return () => window.removeEventListener("scroll", controlNavbar)
+  }, [lastScrollY])
+
   return (
     <header
-      className={`bg-secondary py-4 md:py-6 fixed top-0 left-0 right-0 z-50 shadow-md transition-transform duration-300`}
+      className={`bg-secondary py-4 md:py-6 fixed top-0 left-0 right-0 z-50 shadow-md transition-transform duration-300 ${
+        isVisible ? "translate-y-0" : "-translate-y-full"
+      }`}
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
         {/*<Link href="/" className="text-secondary-foreground hover:text-primary transition-colors duration-200">

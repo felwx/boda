@@ -59,7 +59,7 @@
     "vaul": "^0.9.6",
     "zod": "^3.24.1",
     "jquery": "latest",
-    "react-select": "latest",
+    "@headlessui/react": "latest",
     "react-slick": "latest",
     "slick-carousel": "latest"
   },
